@@ -1,0 +1,564 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;600;700;800&display=swap");
+
+/* 스타일에 있던 헤더 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+body {
+  font-family: "Pretendard Variable", Pretendard, Roboto, sans-serif;
+  letter-spacing: auto; /* 자간 */
+  word-break: keep-all; /* 줄내림 */
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+}
+.wrap {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 헤더 */
+
+/* menu */
+.menu {
+  position: absolute;
+  right: 120px; /* 오른쪽에 고정된 위치 */
+}
+
+.menu-inner {
+  display: flex;
+  gap: 50px; /* 요소들 간의 간격을 10px로 설정 */
+  list-style-type: none; /* 리스트 스타일 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  margin: 0; /* 기본 마진 제거 */
+  align-items: center; /* 메뉴 항목을 수직 방향으로 중앙 정렬 */
+}
+
+.menu-inner li {
+  display: inline-block; /* li 요소를 가로로 정렬 */
+  font-family: "Pretendard Variable", Pretendard, Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+.line {
+  position: absolute;
+  right: 50px; /* 메뉴 아이콘과의 간격을 조정 */
+  width: 40px;
+  height: 40px;
+  border: 1px solid black; /* 동그라미 테두리 */
+  border-radius: 20px; /* 동그라미 모양으로 만들기 */
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  cursor: pointer; /* 클릭 가능한 커서 모양 */
+  transition: width 0.3s ease; /* 부드러운 전환 효과 */
+  overflow: hidden; /* 확장 시 내용이 넘치지 않도록 설정 */
+  z-index: 15; /* 배너와 같은 수준의 z-index 설정 */
+}
+
+.line img {
+  position: absolute;
+  right: 8px; /* 이미지의 위치를 고정 */
+  width: 20px; /* 이미지 크기 조정 */
+  height: 20px; /* 이미지 크기 조정 */
+}
+
+.line.expanded {
+  width: 420px; /* 클릭 시 확장되는 너비 */
+  border-radius: 20px; /* 둥근 모서리 유지 */
+  background-color: #fff;
+}
+
+header {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  z-index: 10; /* 헤더가 배너보다 낮은 z-index 값 */
+  background-color: transparent; /* 헤더 배경을 투명하게 설정 */
+}
+.header-inner {
+  display: flex;
+  align-items: center; /* header-inner의 모든 요소들을 수직 방향으로 중앙 정렬 */
+  justify-content: space-between; /* 공간을 균등하게 배치 */
+  height: 100px; /* 헤더 높이 설정 */
+}
+.logo {
+  position: absolute;
+  left: 50px; /* 좌측에 고정된 위치 */
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logo2 {display: none;}
+
+/* 헤더추가내용 */
+
+.header-inner {
+  margin-top: 20px;
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+}
+
+.hbg {
+  background-color: #fff;
+  width: 100%;
+  height: 110px;
+  z-index: 2;
+}
+
+.menu-inner li:hover {
+  background-color: #26ee3a;
+  transition: background-color 0.3s ease;
+}
+
+.logo2 {display: none;}
+.logo:hover .logo1 {display: none;}
+.logo:hover .logo2 {display: block;}
+
+/* 헤더추가 끝 */
+
+/* 텍스트 박스 */
+.toptxt {position: relative;
+  margin-top: 80px;
+  margin-left: 100px;
+  font-family: "Abhaya Libre" !important;
+  font-weight: bold;
+  /* display: flex;
+  flex-direction: column; */
+}
+.toptxt p {font-size: 130px; line-height: 1;}
+.toptxt span {font-size: 80px; line-height: 1;}
+
+/* 메인사진 */
+.img {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+.img > img {
+  width: 1720px;
+  height: 530px;
+}
+
+.searchtxt{position: relative; display: flex; height: 800px;}
+
+/* 초록바탕 */
+.cambg {
+  position: relative; width: 980px; background: url(../images/cambg.png)  no-repeat; background-size: contain; margin-top: 120px; object-fit: cover;}
+.cam-inner {position: relative; margin-left: 230px; margin-top: 180px;}
+.camtxt {font-size: 50px; font-family: "Abhaya Libre" !important; font-weight: 600;}
+.camtxt1 {position: relative; font-size: 50px; font-weight: 500; line-height: 50px; margin-top: 70px;}
+h4 {font-size: 18px; font-weight: 500; margin-top: 10px;}
+
+
+/* 말풍선, 검색창 */
+
+.search-box {position: relative;  width: 500px; margin-top: 230px; margin-left: 130px;}
+
+.textbox {
+  position: relative;
+}
+
+input {margin-left: 30px;
+  box-shadow: 0px 3px 5px 3px rgb(0, 0, 0, 0.2);
+  outline-style: none;
+}
+
+.box {position: relative; margin-top: 50px; }
+
+.box-inner {
+  position: absolute;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.box-inner input#search {
+  width: 500px;
+  height: 80px;
+  padding-left: 45px;
+  border: none;
+  float: left;
+  background: #f3f3f3;
+  font-size: 16pt;
+  color: #63717f;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+
+.box-inner .icon {
+  position: absolute;
+  padding: 18px;
+  font-size: 40px;
+  color: #ffffff;
+}
+
+.icon {
+  position: absolute;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  background-color: #26ee3a;
+  border-radius: 0 50px 50px 0;
+}
+
+/* 콘텐츠 */
+
+.content {
+  position: relative;
+  margin-top: 150px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 150px;
+}
+
+.con1 {
+  position: relative;
+  display: flex;
+}
+
+.conbg1 {
+  background-color: rgb(0, 0, 0, 0.4);
+  position: absolute;
+  left: 0;
+  width: 570px;
+  height: 790px;
+  border-radius: 0 50px 50px 0;
+}
+
+.date {
+  position: absolute;
+  left: 50px;
+  top: 80px;
+  font-size: 25px;
+  color: #ffffff;
+}
+
+.btn {
+  position: absolute;
+  right: 40px;
+  bottom: 20px;
+}
+
+.label {
+  width: 440px;
+  height: 80px;
+  background-color: #00abfb;
+  position: absolute;
+  left: -50px;
+  top: 120px;
+  border-radius: 0 50px 50px 0;
+  transition: left 0.5s ease;
+}
+
+.label p {
+  font-size: 40px;
+  position: absolute;
+  top: 10px;
+  color: #ffffff;
+  left: 50px;
+  font-weight: bold;
+}
+
+.circle {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  box-shadow: 3px 3px 5px 3px rgb(0, 0, 0, 0.4) inset;
+}
+
+.text {
+  position: absolute;
+  top: 300px;
+  font-size: 24px;
+  color: #ffffff;
+  left: 30px;
+  opacity: 1;
+  /* transition: opacity 0.5s ease; */
+}
+
+/* 콘텐츠 2,3번박스*/
+
+.con2 {
+  position: relative;
+  display: flex;
+}
+
+.btn1 {
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+}
+
+.text1 {
+  position: absolute;
+  top: 300px;
+  font-size: 24px;
+  color: #ffffff;
+  right: 30px;
+  /* transition: opacity 0.5s ease; */
+}
+
+.date1 {
+  position: absolute;
+  right: 50px;
+  top: 80px;
+  font-size: 25px;
+  color: #ffffff;
+}
+
+.conbg2 {
+  background-color: rgb(0, 0, 0, 0.4);
+  position: absolute;
+  right: 0;
+  width: 570px;
+  height: 790px;
+  border-radius: 50px 0 0 50px;
+}
+
+.label1 {
+  width: 440px;
+  height: 80px;
+  background-color: #26ee3a;
+  position: absolute;
+  right: -50px;
+  top: 120px;
+  border-radius: 50px 0 0 50px;
+  transition: right 0.5s ease;
+}
+
+.label1 p {
+  font-size: 40px;
+  position: absolute;
+  top: 10px;
+  color: #000000;
+  right: 50px;
+  font-weight: bold;
+}
+
+.circle1 {
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  position: absolute;
+  left: 30px;
+  top: 20px;
+  box-shadow: 3px 3px 5px 3px rgb(0, 0, 0, 0.4) inset;
+}
+
+.con3 {
+  position: relative;
+  display: flex;
+}
+
+/* 하단 페이지 */
+.number {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  right: 40%;
+  width: 410px;
+  height: 35px;
+}
+.pagenumber{
+  position: relative;
+  display: flex;
+}
+.pagenumber li a:hover{
+  color: #26ee3a;
+}
+.number a {
+  font-size: 30px;
+  margin-left: 30px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* footer */
+
+footer {
+  width: 100%;
+  height: 800px;
+}
+.footer-menu {
+  position: absolute;
+  width: 100%;
+  height: 800px;
+  background-color: black;
+  color: white;
+}
+.footer-right-menu li a{
+  position: relative;
+  color: #fff;
+  z-index: 9999;
+}
+.left-menu {
+  margin-top: 40px;
+  margin-left: 40px;
+}
+.submenu li > p {
+  margin-bottom: 0 auto;
+}
+.sns {
+  position: relative;
+  display: flex;
+  
+}
+.instagram {
+  width: 175px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  margin-left: 7px;
+  background-color: #26ee3a;
+  border-radius: 30px;
+}
+.submenu li {
+  position: relative;
+  margin-bottom: 42px;
+}
+.submenu li:last-child {
+  margin-bottom: 0;
+}
+
+.submenu li p {
+  color: #26ee3a;
+  margin-bottom: auto;
+}
+.submenu-1 {
+  position: relative;
+  width: 461px;
+  padding: 41px;
+  display: flex;
+  justify-content: space-between;
+}
+.submenu-1 li > a {
+  color: white;
+}
+
+.right-menu {
+  position: absolute;
+  top: 45px;
+  right: 120px; /* 오른쪽에 고정된 위치 */
+}
+
+.footer-right-menu {
+  display: flex;
+  gap: 50px; /* 요소들 간의 간격을 10px로 설정 */
+  list-style-type: none; /* 리스트 스타일 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  margin: 0; /* 기본 마진 제거 */
+  align-items: center; /* 메뉴 항목을 수직 방향으로 중앙 정렬 */
+}
+
+.footer-right-menu li {
+  display: inline-block; /* li 요소를 가로로 정렬 */
+  font-family: "Pretendard Variable", Pretendard, Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+.footer-right-menu li:hover a {color: #26ee3a;}
+
+.bottom-line {
+  position: absolute;
+  right: 50px; /* 메뉴 아이콘과의 간격을 조정 */
+  top: 35px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff; /* 동그라미 테두리 */
+  border-radius: 20px; /* 동그라미 모양으로 만들기 */
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  cursor: pointer; /* 클릭 가능한 커서 모양 */
+  transition: width 0.3s ease; /* 부드러운 전환 효과 */
+  overflow: hidden; /* 확장 시 내용이 넘치지 않도록 설정 */
+  z-index: 15; /* 배너와 같은 수준의 z-index 설정 */
+}
+
+.bottom-line img {
+  position: absolute;
+  right: 8px; /* 이미지의 위치를 고정 */
+  width: 20px; /* 이미지 크기 조정 */
+  height: 20px; /* 이미지 크기 조정 */
+}
+
+.bottom-line.expanded {
+  width: 420px;
+  border-radius: 20px; /* 둥근 모서리 유지 */
+  background-color: #000; /* 예시로 다른 배경색 설정 */
+  z-index: 999999;
+}
+
+.btlogo {
+  position: relative;
+  margin-top: 400px;
+  width: 100%;
+  height: 361px;
+  display: flex;
+  justify-content: center;
+}
+
+.btlogo img {
+  width: 100%;
+  height: 100%;
+  margin-top: 400px;
+  object-fit: contain;
+}
+
+/* 반응형 */
+@media screen and (max-width: 1024px) {
+  .toptxt {margin-left: 20px; line-height: 0.5;}
+  .toptxt h1 {font-size: 110px;}
+  .toptxt span {font-size: 70px; }
+  .img > img {width: 100%; height: auto;}
+  .cambg > img {width: 100%; height: auto;}
+  .cam-inner {width: 500px; height: 500px; transform: translateX(-100px);}
+  .camtxt {font-size: 20px;}
+  .camtxt1 {font-size: 30px; margin-top: 10px; line-height: 30px;}
+
+
+}
+
+@media screen and (max-width: 768px) {
+  .toptxt h1 {font-size: 80px;}
+  .toptxt span {font-size: 50px;}
+}

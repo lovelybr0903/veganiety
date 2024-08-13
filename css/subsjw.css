@@ -1,0 +1,974 @@
+@import "globa.css";
+
+
+/* header start */
+header {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  z-index: 10; /* 헤더가 배너보다 낮은 z-index 값 */
+  background-color: transparent; /* 헤더 배경을 투명하게 설정 */
+}
+.header-inner {
+  display: flex;
+  align-items: center; /* header-inner의 모든 요소들을 수직 방향으로 중앙 정렬 */
+  justify-content: space-between; /* 공간을 균등하게 배치 */
+  height: 100px; /* 헤더 높이 설정 */
+}
+.logo {
+  position: absolute;
+  left: 30px; /* 좌측에 고정된 위치 */
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.logo a:hover {
+  opacity: 0.5;
+}
+/* menu */
+.menu {
+  position: absolute;
+  right: 120px; /* 오른쪽에 고정된 위치 */
+}
+
+.menu-inner {
+  display: flex;
+  gap: 50px; /* 요소들 간의 간격을 10px로 설정 */
+  list-style: none; /* 리스트 스타일 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  margin: 0; /* 기본 마진 제거 */
+  align-items: center; /* 메뉴 항목을 수직 방향으로 중앙 정렬 */
+}
+
+.menu-inner li {
+  display: inline-block; /* li 요소를 가로로 정렬 */
+  font-family: "Pretendard Variable", Pretendard, Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+.menu-inner li a {
+  text-decoration: none; /* 링크의 기본 밑줄 제거 */
+  color: #000; /* 링크 텍스트 색상 설정 */
+  display: inline-block; /* transform 효과를 위해 inline-block 설정 */
+  transition: transform 0.3 ease; /* 변형 시 부드러운 애니메이션 효과 */
+}
+
+.menu-inner li a:hover {
+  transform: scale(1.1); /* 마우스 오버 시 확대 */
+}
+
+.line {
+  position: absolute;
+  right: 50px; /* 메뉴 아이콘과의 간격을 조정 */
+  width: 40px;
+  height: 40px;
+  border: 1px solid black; /* 동그라미 테두리 */
+  border-radius: 20px; /* 동그라미 모양으로 만들기 */
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  cursor: pointer; /* 클릭 가능한 커서 모양 */
+  transition: width 0.3s ease; /* 부드러운 전환 효과 */
+  overflow: hidden; /* 확장 시 내용이 넘치지 않도록 설정 */
+  z-index: 15; /* 배너와 같은 수준의 z-index 설정 */
+}
+
+.line img {
+  position: absolute;
+  right: 9px; /* 이미지의 위치를 고정 */
+  top: 10px;
+  width: 20px; /* 이미지 크기 조정 */
+  height: 20px; /* 이미지 크기 조정 */
+}
+
+.line.expanded {
+  width: 430px; /* 클릭 시 확장되는 너비 */
+  border-radius: 20px; /* 둥근 모서리 유지 */
+  background-color: #fff;
+}
+
+/* 모바일 메뉴 버튼 스타일 */
+.mb-nav {
+  display: block; /* 모바일 화면에서 버튼을 표시 */
+  position: absolute; /* 화면에 고정 */
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 40; /* 메뉴보다 위에 표시되도록 설정 */
+}
+
+.icon-bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: black;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+/* 햄버거 버튼과 엑스 표시 변환 */
+.mb-nav.show .icon-bar.top {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.mb-nav.show .icon-bar.middle {
+  opacity: 0;
+}
+
+.mb-nav.show .icon-bar.bottom {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+/* 모바일 메뉴 스타일 */
+.mbmenu-wrap {
+  display: none; /* 기본적으로 숨김 */
+  position: absolute; /* 화면에 고정 */
+  top: 0;
+  right: 0;
+  background-color: white;
+  width: 70%;
+  height: 100%; /* 전체 화면 높이 */
+  z-index: 30; /* 다른 요소들 위에 표시되도록 설정 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+.mbmenu-wrap.show {
+  display: block;
+  transform: translateX(0); /* 화면에 표시되도록 설정 */
+}
+
+.mbmenu-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: flex-start; /* 메뉴를 왼쪽에 정렬 */
+  padding: 60px 20px 20px; /* X 아이콘 아래에서 메뉴가 시작되도록 패딩 설정 */
+  height: calc(100% - 60px); /* X 아이콘 높이만큼 패딩 조정 */
+}
+
+.mbmenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mbmenu li {
+  text-align: left;
+  padding: 10px 0; /* 메뉴 항목 위아래 패딩 */
+  position: relative; /* 바를 메뉴 항목에 맞게 위치시키기 위한 설정 */
+}
+
+/* 메뉴 항목 사이의 바 */
+.mbmenu li::after {
+  content: "";
+  display: block;
+  width: calc(100% + 40px); /* 바의 길이를 메뉴 항목 너비보다 더 길게 설정 */
+  height: 1px; /* 바의 두께 */
+  background: #ccc; /* 바의 색상 */
+  position: absolute;
+  bottom: 0; /* 메뉴 항목 아래에 위치하도록 설정 */
+  left: 0; /* 왼쪽 끝에 위치하도록 설정 */
+}
+
+/* 메뉴 항목 마지막 항목에서 바 제거 */
+.mbmenu li:last-child::after {
+  display: none;
+}
+
+.mbmenu li a {
+  text-decoration: none;
+  color: #000;
+  font-size: 24px;
+  display: block;
+}
+
+/* 모바일 화면에서의 스타일 */
+@media (max-width: 768px) {
+  .mb-nav {
+    display: block; /* 모바일 화면에서 버튼을 표시 */
+  }
+
+  .line {
+    display: none; /* 모바일에서 line 숨김 */
+  }
+
+  .menu {
+    display: none; /* 데스크탑 메뉴 숨김 */
+  }
+
+  .logo {
+    position: fixed; /* 화면에 고정 */
+    top: 10px;
+    left: 10px;
+  }
+
+  .logo img {
+    width: 100px; /* 모바일에서의 로고 크기 */
+  }
+}
+
+/* 데스크탑 화면에서의 스타일 */
+@media (min-width: 769px) {
+  .mb-nav {
+    display: none; /* 데스크탑 화면에서 버튼 숨김 */
+  }
+
+  .mbmenu-wrap {
+    display: none; /* 데스크탑 화면에서 메뉴 숨김 */
+  }
+
+  .line {
+    display: block; /* 데스크탑 화면에서 line 표시 */
+  }
+
+  .menu {
+    display: flex; /* 데스크탑 화면에서 메뉴 표시 */
+  }
+}
+
+
+/* main */
+main {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 10px;
+  width: 100%;
+  height: 810px;
+}
+.mainimg {
+  position: relative;
+  margin-right: 58px;
+  margin-top: 180px;
+}
+.mainimg img{
+max-width: 982px;
+object-fit: contain;
+}
+.mainment {
+  position: relative;
+  font-family: "Abhaya Libre", serif;
+  margin-top: 250px;
+}
+.mainment h1 {
+  font-size: 150px;
+  font-weight: bold;
+}
+.mainment h2 {
+  font-size: 120px;
+  font-weight: bold;
+}
+
+/* section 1 */
+.comment {
+  position: relative;
+  margin-top: 110px;
+  margin-left: 58px;
+  display: flex;
+  justify-content: space-around;
+}
+.ment {
+  position: relative;
+  /* height: 185px; */
+}
+.ment span {
+  position: relative;
+  font-size: 50px;
+  font-family: "Abhaya Libre", serif;
+  margin-bottom: 50px;
+  letter-spacing: -2px;
+}
+.ment h3 {
+  position: relative;
+  font-size: 60px;
+  font-family: "Pretendard-Regular";
+  margin-bottom: 15px;
+  line-height: 90px;
+  letter-spacing: -5px;
+}
+.ment p {
+  position: relative;
+  font-size: 20px;
+  font-family: "Pretendard-Regular";
+  letter-spacing: -2px;
+}
+
+@media screen and (max-width: 1800px){
+  
+  .box-inner{
+  left: 250px;
+  }
+   .number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   }
+  
+  }
+
+@media screen and (max-width: 1500px) {
+.mainimg img{
+  object-fit: contain;
+}
+.chat img{
+  object-fit: contain;
+}
+.ment h3{
+  font-size: 40px;
+}
+
+.ment span{
+  font-size: 30px;
+}
+.image{
+  object-fit: contain;
+}
+
+}
+
+@media screen and (max-width: 1024px) {
+  .mainment{
+display: none;
+justify-content: center;
+align-items: center;
+
+  }
+  .submenu{
+    margin-top: 100px;
+    left: 200px;
+  }
+  .chat img{
+    display: none;}
+
+  .box-inner{
+      /* margin-left: 1000px !important;  */
+     }
+
+     .image img{
+      object-fit: contain;
+     }
+}
+
+
+/* 검색바 */
+/* .serch {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 630px;
+  height: 90px;
+  margin-top: 50px;
+  background-color: #f3f3f3;
+  border-radius: 100px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+} */
+
+.box{
+  position: relative;
+  bottom: 1550px;
+  transform: translateX(-240px);
+}
+input 
+{box-shadow: 3px 3px 5px 3px rgb(0, 0, 0, .2); outline-style: none;}
+
+.box-inner 
+{position: absolute; 
+  top: 1600px; right: 200px;
+  width: 500px; 
+  vertical-align: middle; 
+  white-space: nowrap;}
+
+.box-inner input#search 
+{width: 500px; height: 80px; 
+  padding-left: 45px; border: none; 
+  float: left; background: #F3F3F3;
+   font-size: 10pt; color: #63717f; 
+   -webkit-border-radius: 50px; 
+   -moz-border-radius: 50px; border-radius: 50px;}
+
+.box-inner .icon 
+{position: absolute;
+   padding: 18px;
+    font-size: 40px;
+     color: #ffffff;}
+
+.icon 
+{position: absolute; 
+  right:0; 
+  width: 80px; 
+  height: 80px; 
+  background-color: #26EE3A; 
+  border-radius: 0 50px 50px 0;}
+
+.mirror {
+  position: absolute;
+  width: 94px;
+  height: 90px;
+  right: 0;
+  background-color: #26ee3a;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+/* 채팅이미지 */
+.chat img {
+  position: relative;
+  /* bottom: 15%; */
+}
+
+/* image */
+.image {
+  position: relative;
+  margin: 217px 114px 120px 120px;
+  display: flex;
+  align-items: center;
+  height: 900px;
+}
+.image1-1 {
+  position: relative;
+  /* width: 876px;
+  height: 1167px; */
+  margin-top: 275px;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+}
+/* coffee tag */
+.tag {
+  position: absolute;
+  z-index: 1;
+
+  bottom: 30px;
+  padding-left: 34px;
+}
+.tag span {
+  position: relative;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Pretendard-Regular";
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag ul {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  /* transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag ul > li {
+  margin-left: 20px;
+}
+
+.tag ul :first-child {
+  margin: 0;
+}
+
+.tag ul li > a {
+  position: relative;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px;
+  z-index: 1;
+  /* bottom: 50px; */
+  text-align: center;
+  border-radius: 50px;
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #aa4e02;
+}
+/* .image img:hover{
+position: relative;
+z-index: 1;
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/* .image1-1:hover .tag span {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+} */
+
+.coffee:hover .tag ul {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+}
+
+/* soap tag */
+.tag1 {
+  position: absolute;
+  z-index: 1;
+
+  bottom: 30px;
+  padding-left: 34px;
+}
+.tag1 span {
+  position: relative;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Pretendard-Regular";
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag1 ul {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  /* transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag1 ul > li {
+  margin-left: 20px;
+}
+
+.tag1 ul :first-child {
+  margin: 0;
+}
+
+.tag1 ul li > a {
+  position: relative;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px;
+  z-index: 1;
+  /* bottom: 50px; */
+  text-align: center;
+  border-radius: 50px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #EAE2E4;
+}
+/* .image img:hover{
+position: relative;
+z-index: 1;
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/* .image1-1:hover .tag span {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+} */
+
+.soap:hover .tag1 ul {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+}
+/* greenmark tag */
+.tag2 {
+  position: absolute;
+  z-index: 1;
+ bottom: -240px;
+  padding-left: 34px;
+}
+.tag2 span {
+  position: relative;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Pretendard-Regular";
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag2 ul {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  /* transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag2 ul > li {
+  margin-left: 20px;
+}
+
+.tag2 ul :first-child {
+  margin: 0;
+}
+
+.tag2 ul li > a {
+  position: relative;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px;
+  z-index: 1;
+  /* bottom: 50px; */
+  text-align: center;
+  border-radius: 50px;
+  color: #ffffff;
+  font-weight: bold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #0E5B44;
+}
+/* .image img:hover{
+position: relative;
+z-index: 1;
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/* .image1-1:hover .tag span {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+} */
+
+.greenmark:hover .tag2 ul {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+}
+/* salad tag */
+.tag3 {
+  position: absolute;
+  z-index: 1;
+ bottom: 440px;
+  padding-left: 34px;
+}
+.tag3 span {
+  position: relative;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Pretendard-Regular";
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag3 ul {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  /* transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag3 ul > li {
+  margin-left: 20px;
+}
+
+.tag3 ul :first-child {
+  margin: 0;
+}
+
+.tag3 ul li > a {
+  position: relative;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px;
+  z-index: 1;
+  /* bottom: 50px; */
+  text-align: center;
+  border-radius: 50px;
+  color: #000000;
+  font-weight: bold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #CFDC5B;
+}
+/* .image img:hover{
+position: relative;
+z-index: 1;
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/* .image1-1:hover .tag span {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+} */
+
+.green:hover .tag3 ul {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+}
+/* potato tag */
+.tag4 {
+  position: absolute;
+  z-index: 1;
+ bottom:-50px;
+  padding-left: 34px;
+}
+.tag4 span {
+  position: relative;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  letter-spacing: -2px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: "Pretendard-Regular";
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag4 ul {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  /* transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+  transform: scale(1) translateY(0); /* Default state */
+  opacity: 1; Ensure ul is visible by default */
+}
+
+.tag4 ul > li {
+  margin-left: 20px;
+}
+
+.tag4 ul :first-child {
+  margin: 0;
+}
+
+.tag4 ul li > a {
+  position: relative;
+  gap: 10px;
+  height: 40px;
+  padding: 0 10px;
+  z-index: 1;
+  /* bottom: 50px; */
+  text-align: center;
+  border-radius: 50px;
+  color: #000000;
+  font-weight: bold;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background-color: #E0BC6E;
+}
+/* .image img:hover{
+position: relative;
+z-index: 1;
+  background-color: rgba(0,0,0,0.3);
+} */
+
+/* .image1-1:hover .tag span {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+} */
+
+.potato:hover .tag4 ul {
+  transform: scale(1.2) translateX(10px);translateZ(10px);
+}
+
+.greenmark {
+  margin-top: 20px;
+}
+.image1-2 {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-left: 20px;
+  gap: 20px;
+}
+.centernumber{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.number {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+top: 300px;
+  /* right: 40%; */
+  width: 410px;
+  height: 35px;
+}
+.pagenumber{
+  position: relative;
+  display: flex;
+}
+.pagenumber li a:hover{
+  color: #26ee3a;
+}
+.number a {
+  font-size: 30px;
+  margin-left: 30px;
+  text-align: center;
+
+  font-weight: 600;
+}
+/* footer */
+
+footer {
+  width: 100%;
+  height: 800px;
+}
+.footer-menu {
+  position: absolute;
+  width: 100%;
+  height: 800px;
+  background-color: black;
+  color: white;
+}
+.footer-right-menu li a{
+  position: relative;
+  color: #fff;
+  z-index: 9999;
+}
+/* .menu {
+  position: absolute;
+  justify-content: space-between;
+} */
+.left-menu {
+  margin-top: 40px;
+  margin-left: 40px;
+}
+.submenu li > p {
+  margin-bottom: 0 auto;
+}
+.sns {
+  position: relative;
+  display: flex;
+  
+}
+.instagram {
+  width: 175px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 600;
+  margin-left: 7px;
+  background-color: #26ee3a;
+  border-radius: 30px;
+}
+.submenu li {
+  position: relative;
+  margin-bottom: 42px;
+}
+.submenu li:last-child {
+  margin-bottom: 0;
+}
+
+.submenu li p {
+  color: #26ee3a;
+  margin-bottom: auto;
+}
+.submenu-1 {
+  position: relative;
+  width: 461px;
+  padding: 41px;
+  display: flex;
+  justify-content: space-between;
+}
+.submenu-1 li > a {
+  color: white;
+}
+
+.right-menu {
+  position: absolute;
+  top: 45px;
+  right: 120px; /* 오른쪽에 고정된 위치 */
+}
+
+.footer-right-menu {
+  display: flex;
+  gap: 50px; /* 요소들 간의 간격을 10px로 설정 */
+  list-style-type: none; /* 리스트 스타일 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  margin: 0; /* 기본 마진 제거 */
+  align-items: center; /* 메뉴 항목을 수직 방향으로 중앙 정렬 */
+}
+
+.footer-right-menu li {
+  display: inline-block; /* li 요소를 가로로 정렬 */
+  font-family: "Pretendard Variable", Pretendard, Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+.footer-right-menu li a {
+  text-decoration: none; /* 링크의 기본 밑줄 제거 */
+  color: #fff; /* 링크 텍스트 색상 설정 */
+  display: inline-block; /* transform 효과를 위해 inline-block 설정 */
+  transition: transform; /* 변형 시 부드러운 애니메이션 효과 */
+}
+
+.footer-right-menu li a:hover {
+  transform: scale(1.1); /* 마우스 오버 시 확대 */
+}
+
+.bottom-line {
+  position: absolute;
+  right: 50px; /* 메뉴 아이콘과의 간격을 조정 */
+  top: 35px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff; /* 동그라미 테두리 */
+  border-radius: 20px; /* 동그라미 모양으로 만들기 */
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  cursor: pointer; /* 클릭 가능한 커서 모양 */
+  transition: width 0.3s ease; /* 부드러운 전환 효과 */
+  overflow: hidden; /* 확장 시 내용이 넘치지 않도록 설정 */
+  z-index: 9999; /* 배너와 같은 수준의 z-index 설정 */
+}
+
+.bottom-line img {
+  position: absolute;
+  right: 8px; /* 이미지의 위치를 고정 */
+  width: 20px; /* 이미지 크기 조정 */
+  height: 20px; /* 이미지 크기 조정 */
+}
+
+.bottom-line.expanded {
+  width: 430px;
+  border-radius: 20px; /* 둥근 모서리 유지 */
+  background-color: #000000; /* 예시로 다른 배경색 설정 */
+}
+
+.btlogo {
+  position: relative;
+  margin-top: 400px;
+  width: 100%;
+  height: 361px;
+  display: flex;
+  justify-content: center;
+}
+
+.btlogo img {
+  width: 100%;
+  height: 100%;
+  margin-top: 400px;
+  object-fit: contain;
+}
+/* footer 반응형 */
+@media screen and (max-width: 1500px) {
+  .right-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+      }
+      .submenu{
+        margin-top: 100px;
+        left: 200px;
+      }
+    }
+
+
+@media screen and (max-width: 1024px) {
+
